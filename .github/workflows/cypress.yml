@@ -21,10 +21,10 @@ jobs:
         uses: cypress-io/github-action@v6
 
       - name: Upload artifact
-      - uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
-        name: my-artifact
-        path: |
-          cypress/videos/
-          cypress/screenshots/
+          name: my-artifact
+          path: |
+            cypress/videos/
+            cypress/screenshots/
 
