@@ -1,0 +1,13 @@
+{
+  "name": "secondGitHubActions",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src\\fakerExample.js"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1"
+  },
+  "dependencies": {
+    "pg": "^8.12.0"
+  }
+}
