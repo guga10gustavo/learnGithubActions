@@ -1,0 +1,35 @@
+name: Cypress Tests Run on Pipeline
+
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
+    steps:
+      # Downloads a copy of the code in your repository before running CI tests
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Performs a clean installation of all dependencies in the `package.json` file
+      # For more information, see https://docs.npmjs.com/cli/ci.html  
+      - name: Install dependencies
+        run: npm ci
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        continue-on-error: true
+
+      - name: Cypress artifact screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - name: Cypress artifact videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
+
